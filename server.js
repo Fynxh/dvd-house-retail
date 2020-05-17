@@ -5,6 +5,9 @@ const app = express()
 app.use(express.json({limit: '50mb'}))
 
 // sequelize connection
+// @database-name   :db_dvdhouseretail
+// @username        :root
+// @password        :
 const sequelizeConnect = new sequelize ('db_dvdhouseretail', 'root', '', {
     host: 'localhost',
     dialect: 'mysql',
@@ -17,6 +20,10 @@ const sequelizeConnect = new sequelize ('db_dvdhouseretail', 'root', '', {
         idle: 10000
     }
 });
+
+// routes
+app.use('/api/auth', require('./routes/api/auth'))
+app.use('/api/barang', require('./routes/api/barang'))
 
 // test connection
 sequelizeConnect.authenticate()
