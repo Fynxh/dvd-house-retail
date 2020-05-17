@@ -1,0 +1,19 @@
+{
+  "name": "dvd-house-retail",
+  "version": "1.0.0",
+  "description": "tugas kuliah rpl",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fynxh/dvd-house-retail.git"
+  },
+  "author": "Fahmi Nuralamsah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fynxh/dvd-house-retail/issues"
+  },
+  "homepage": "https://github.com/Fynxh/dvd-house-retail#readme"
+}
