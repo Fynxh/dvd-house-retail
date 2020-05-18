@@ -7,10 +7,10 @@ const jwt = require('jsonwebtoken');
 // Models
 const User = require('../../models').User;
 
-// @route   POST api/auth/user
+// @route   POST api/auth
 // @desc    Auth user
 // @access  Public
-router.post('/user', (req, res) => {
+router.post('/', (req, res) => {
     const {username, password} = req.body;
 
     // simple validation
