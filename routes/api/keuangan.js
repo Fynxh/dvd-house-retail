@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const auth= require('../../middleware/auth');
-const uuid = require('uuid/dist/v4');
+const uuid = require('uuid').v4;
 
 // models
 const Keuangan = require('../../models').keuangan
