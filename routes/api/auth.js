@@ -50,4 +50,15 @@ router.post('/', (req, res) => {
     })
 })
 
+// @route   GET api/auth
+// @desc    Get user
+// @access  Private
+router.get('/', auth, (req, res) => {
+    User.findByPk(req.user.id, { attributes: {
+        exclude: ['password']
+    } }).then(user => {
+        res.status(200).json(user);
+    })
+})
+
 module.exports = router

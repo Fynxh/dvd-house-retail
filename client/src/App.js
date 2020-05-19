@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import store from "./strore";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Provider } from "react-redux";
+import { loadUser } from "./actions/authAction";
+// import loginPage from "./components/loginPage"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  
+  componentDidMount(){
+    store.dispatch(loadUser())
+  }
+
+  render() {
+    return (
+      <Provider store={store}>
+        <Router>
+          <Switch>
+            {/* <Route path='/login' exact component={loginPage} /> */}
+          </Switch>
+        </Router>
+      </Provider>
+    )
+  }
 }
 
 export default App;
