@@ -21,7 +21,6 @@ export const LAPORAN_LOADING = 'LAPORAN_LOADING'
 export const GET_LAPORAN = 'GET_LAPORAN'
 export const ADD_LAPORAN = 'ADD_LAPORAN'
 export const DELETE_LAPORAN = 'DELETE_LAPORAN'
-export const UPDATE_KEUANGAN = 'UPDATE_KEUANGAN'
 
 // for error
 export const GET_ERRORS = 'GET_ERRORS'
