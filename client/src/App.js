@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import { loadUser } from "./actions/authAction";
 import loginPage from "./components/loginPage"
-import Dashboard from "./components/dashboard"
+import DefaultLayout from "./layout/DefaultLayout"
 
 import './App.scss'
 
@@ -20,7 +20,7 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path='/login' exact component={loginPage} />
-            <Route path='/'  component={Dashboard} />
+            <Route path='/' name='Home' component={DefaultLayout} />
           </Switch>
         </Router>
       </Provider>
