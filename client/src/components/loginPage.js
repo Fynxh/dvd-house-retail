@@ -31,7 +31,7 @@ class loginPage extends Component {
                       <InputGroup className="mb-3">
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
-                            <i className="icon-user"></i>
+                            <i className="cil-user"></i>
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input type="text" placeholder="Username" autoComplete="username" />
@@ -39,7 +39,7 @@ class loginPage extends Component {
                       <InputGroup className="mb-4">
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
-                            <i className="icon-lock"></i>
+                            <i className="cil-lock-locked"></i>
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input type="password" placeholder="Password" autoComplete="current-password" />

@@ -6,6 +6,8 @@ import { loadUser } from "./actions/authAction";
 import loginPage from "./components/loginPage"
 import Dashboard from "./components/dashboard"
 
+import './App.scss'
+
 class App extends Component {
   
   componentDidMount(){
@@ -18,7 +20,7 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path='/login' exact component={loginPage} />
-            <Route path='/' exact component={Dashboard} />
+            <Route path='/'  component={Dashboard} />
           </Switch>
         </Router>
       </Provider>
