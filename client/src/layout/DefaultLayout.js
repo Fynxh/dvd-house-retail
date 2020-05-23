@@ -1,10 +1,12 @@
 import React, { Component, Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import LoginPage from "../components/loginPage"
+import { connect } from "react-redux";
 import * as router from 'react-router-dom';
 import { Container } from 'reactstrap';
+import PropTypes from "prop-types"
 
 import {
-  AppAside,
   AppFooter,
   AppHeader,
   AppSidebar,
@@ -12,7 +14,6 @@ import {
   AppSidebarForm,
   AppSidebarHeader,
   AppSidebarMinimizer,
-  AppBreadcrumb2 as AppBreadcrumb,
   AppSidebarNav2 as AppSidebarNav,
 } from '@coreui/react';
 // sidebar nav config
@@ -25,6 +26,10 @@ const DefaultHeader = React.lazy(() => import('./DefaultHeader'));
 
 class DefaultLayout extends Component {
 
+  static propTypes = {
+    auth: PropTypes.object.isRequired
+  }
+
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
   signOut(e) {
@@ -33,6 +38,28 @@ class DefaultLayout extends Component {
   }
 
   render() {
+    const { isAuthenticated } = this.props.auth
+    console.log(isAuthenticated)
+    // const isAuthenticated = false
+
+    const authRoutes = (
+      <React.Fragment>
+        {routes.map((route, idx) => {
+          return route.component ? (
+            <Route
+              key={idx}
+              path={route.path}
+              exact={route.exact}
+              name={route.name}
+              render={props => (
+                <route.component {...props} />
+            )} />
+          ) : (null);
+        })}
+        <Redirect from="/" to="/dashboard" />
+      </React.Fragment>
+    )
+
     return (
       <div className="app">
         <AppHeader fixed>
@@ -54,19 +81,7 @@ class DefaultLayout extends Component {
             <Container fluid>
               <Suspense fallback={this.loading()}>
                 <Switch>
-                  {routes.map((route, idx) => {
-                    return route.component ? (
-                      <Route
-                        key={idx}
-                        path={route.path}
-                        exact={route.exact}
-                        name={route.name}
-                        render={props => (
-                          <route.component {...props} />
-                        )} />
-                    ) : (null);
-                  })}
-                  <Redirect from="/" to="/dashboard" />
+                  { isAuthenticated ? authRoutes : (<Redirect to="/login" />) }
                 </Switch>
               </Suspense>
             </Container>
@@ -82,4 +97,8 @@ class DefaultLayout extends Component {
   }
 }
 
-export default DefaultLayout;
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+export default connect( mapStateToProps, {} )(DefaultLayout)

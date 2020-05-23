@@ -19,7 +19,7 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <Switch>
-            <Route path='/login' exact component={loginPage} />
+            <Route path='/login' exact name="Login Page" component={loginPage} />
             <Route path='/' name='Home' component={DefaultLayout} />
           </Switch>
         </Router>
