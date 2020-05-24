@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import { Container } from "reactstrap";
 
 class dashboard extends Component {
     render() {
         return (
-            <div>
-                <h1>Dashboard</h1>
-                <Link to={'/login' }>Login</Link>
+            <div className="jumbotron jumbotron-fluid">
+                <Container>
+                    <h1 className="display-4">DVD House Retail</h1>
+                    <p className="lead">DVD house retail admin application</p>
+
+                    <hr className="my-4" />
+                </Container>
             </div>
         );
     }

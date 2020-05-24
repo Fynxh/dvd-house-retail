@@ -7,6 +7,7 @@ import loginPage from "./components/loginPage"
 import DefaultLayout from "./layout/DefaultLayout"
 
 import './App.scss'
+import 'simple-line-icons/css/simple-line-icons.css'
 
 class App extends Component {
   

@@ -1,6 +1,5 @@
 import React, { Component, Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import LoginPage from "../components/loginPage"
 import { connect } from "react-redux";
 import * as router from 'react-router-dom';
 import { Container } from 'reactstrap';
@@ -26,6 +25,14 @@ const DefaultHeader = React.lazy(() => import('./DefaultHeader'));
 
 class DefaultLayout extends Component {
 
+  constructor(props) {
+    super(props)
+
+    this.state ={
+      navigation: null
+    }
+  }
+
   static propTypes = {
     auth: PropTypes.object.isRequired
   }
@@ -38,9 +45,9 @@ class DefaultLayout extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props.auth
-    console.log(isAuthenticated)
+    const { isAuthenticated, user } = this.props.auth
     // const isAuthenticated = false
+    const level = user ? user.level : null
 
     const authRoutes = (
       <React.Fragment>
@@ -50,7 +57,7 @@ class DefaultLayout extends Component {
               key={idx}
               path={route.path}
               exact={route.exact}
-              name={route.name}
+              name={route.nama}
               render={props => (
                 <route.component {...props} />
             )} />
@@ -78,7 +85,7 @@ class DefaultLayout extends Component {
             <AppSidebarMinimizer />
           </AppSidebar>
           <main className="main">
-            <Container fluid>
+            <Container className="py-3" fluid>
               <Suspense fallback={this.loading()}>
                 <Switch>
                   { isAuthenticated ? authRoutes : (<Redirect to="/login" />) }

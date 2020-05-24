@@ -15,7 +15,7 @@ export const loadUser = () => (dispatch, getState) => {
     // user loading
     dispatch({ type: USER_LOADING })
 
-    axios.get('/api/auth', tokenConfig(getState)).then(res => {
+    axios.get('api/auth', tokenConfig(getState)).then(res => {
         dispatch({
             type: USER_LOADED,
             payload: res.data
@@ -40,7 +40,7 @@ export const login = ({ username, password }) => dispatch => {
     // request body 
     const body = JSON.stringify({username, password});
 
-    axios.post('/api/auth', body, config)
+    axios.post('api/auth', body, config)
         .then(res => {
             dispatch({
                 type: LOGIN_SUCCESS,
