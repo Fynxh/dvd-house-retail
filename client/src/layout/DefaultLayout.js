@@ -5,6 +5,8 @@ import * as router from 'react-router-dom';
 import { Container } from 'reactstrap';
 import PropTypes from "prop-types"
 
+import { logout } from "../actions/authAction";
+
 import {
   AppFooter,
   AppHeader,
@@ -41,7 +43,7 @@ class DefaultLayout extends Component {
 
   signOut(e) {
     e.preventDefault()
-    this.props.history.push('/login')
+    this.props.logout()
   }
 
   render() {
@@ -108,4 +110,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect( mapStateToProps, {} )(DefaultLayout)
+export default connect( mapStateToProps, {logout} )(DefaultLayout)

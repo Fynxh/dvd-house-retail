@@ -25,9 +25,6 @@ class DefaultHeader extends Component {
           <NavItem className="px-3">
             <NavLink to="/dashboard" className="nav-link" >Dashboard</NavLink>
           </NavItem>
-          <NavItem className="px-3">
-            <NavLink to="#" className="nav-link">Settings</NavLink>
-          </NavItem>
         </Nav>
         <Nav className="ml-auto" navbar>
           <UncontrolledDropdown nav direction="down">
@@ -36,7 +33,7 @@ class DefaultHeader extends Component {
               {/* <img src={'../../assets/img/avatars/6.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" /> */}
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem onClick={e => this.props.onLogout(e)}><i className="fa fa-lock"></i> Logout</DropdownItem>
+              <DropdownItem onClick={e => this.props.onLogout(e)}><i className="icon-logout"></i> Logout</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>

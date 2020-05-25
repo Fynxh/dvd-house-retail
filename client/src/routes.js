@@ -2,9 +2,9 @@ import React from "react"
 
 // components
 const Dashboard = React.lazy(() => import('./components/dashboard'))
-const stafBarangPage = React.lazy(() => import('./components/stafPages/stafBarangPage'))
-const stafKeuanganPage = React.lazy(() => import('./components/stafPages/stafKeuanganPage'))
-const supervisor = React.lazy(() => import('./components/stafPages/supervisor'))
+const stafBarangPage = React.lazy(() => import('./components/stafPages/stafBarang/stafBarangPage'))
+const stafKeuanganPage = React.lazy(() => import('./components/stafPages/stafKeuangan/stafKeuanganPage'))
+const supervisor = React.lazy(() => import('./components/stafPages/supervisor/supervisor'))
 
 // routes
 const routes = [

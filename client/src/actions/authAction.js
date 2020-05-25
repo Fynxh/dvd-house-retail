@@ -7,7 +7,7 @@ import {
     LOGIN_FAIL,
     LOGOUT_SUCCESS
 } from "../actions/types";
-import { returnError } from "./errorAction";
+import { returnError, clearError } from "./errorAction";
 
 
 // check token & get user
@@ -42,6 +42,7 @@ export const login = ({ username, password }) => dispatch => {
 
     axios.post('api/auth', body, config)
         .then(res => {
+            dispatch(clearError())
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: res.data
@@ -53,6 +54,13 @@ export const login = ({ username, password }) => dispatch => {
                 type: LOGIN_FAIL
             })
         })
+}
+
+// Logout
+export const logout = () => {
+    return {
+        type: LOGOUT_SUCCESS
+    }
 }
 
 // token config

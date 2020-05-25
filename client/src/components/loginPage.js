@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from "prop-types"
 import { login } from "../actions/authAction";
+import { clearError } from "../actions/errorAction";
 import { 
   Button, 
   Card, 
@@ -31,7 +32,22 @@ class loginPage extends Component {
   }
 
   static propType = {
-    login: PropTypes.func.isRequired
+    login: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    error: PropTypes.object.isRequired
+  }
+
+  componentDidUpdate(prevProps) {
+    const { error } = this.props
+
+    if(error !== prevProps.error) {
+      // check for login error
+      if(error.id === 'LOGIN_FAIL') {
+        this.setState({ msg: error.msg.msg })
+      } else {
+        this.setState({ msg: null })
+      }
+    }
   }
 
   onChange = e => {
@@ -64,6 +80,11 @@ class loginPage extends Component {
                   <CardGroup>
                     <Card className="p-4">
                       <CardBody>
+                        { this.state.msg ? (
+                          <div className="alert alert-danger" role="alert">
+                            {this.state.msg}
+                          </div>
+                        ) : null }
                         <Form onSubmit={this.onLogin}>
                           <h1>Login</h1>
                           <p className="text-muted">Sign In to your account</p>
@@ -103,7 +124,8 @@ class loginPage extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  error: state.error
 })
 
-export default connect( mapStateToProps, {login} )(loginPage)
+export default connect( mapStateToProps, {login, clearError} )(loginPage)

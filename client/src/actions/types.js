@@ -6,7 +6,7 @@ export const USER_LOADED = 'USER_LOADED'
 export const BARANG_LOADING = 'BARANG_LOADING'
 export const GET_BARANG = 'GET_BARANG'
 export const ADD_BARANG = 'ADD_BARANG'
-export const DELETE_BARANGA = 'DELETE_BARANGA'
+export const DELETE_BARANG = 'DELETE_BARANG'
 export const UPDATE_BARANG = 'UPDATE_BARANG'
 
 // for keuangan

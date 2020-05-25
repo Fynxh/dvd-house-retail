@@ -8,7 +8,7 @@ export default {
         {
             name: 'Stok Barang',
             url: '/stok',
-            icon: 'cil-layers'
+            icon: 'icon-social-dropbox'
         },
         {
             name: 'Keuangan',
