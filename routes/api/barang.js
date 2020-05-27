@@ -74,7 +74,7 @@ router.put('/update/:id', auth, (req, res) => {
     }
 
     // update barang
-    User.update(
+    Barang.update(
         {
             nama: updateBarang.nama,
             jumlah: updateBarang.jumlah
@@ -85,7 +85,7 @@ router.put('/update/:id', auth, (req, res) => {
             }
         }
     ).then(() => {
-        res.status(200).json({ msg: 'Successfully updated' });
+        res.status(200).json({ update: 'Success' });
     }).catch(err => {
         res.status(400).json(err);
     })

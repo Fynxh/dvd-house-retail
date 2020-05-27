@@ -8,7 +8,8 @@ import {
 
 const initialState = {
     barang: [],
-    loading: false
+    loading: false,
+    msg: null
 }
 
 export default function(state = initialState, action) {
@@ -37,7 +38,7 @@ export default function(state = initialState, action) {
         case UPDATE_BARANG:
             return {
                 ...state,
-                barang: [action.payload, ...state.barang]
+                msg: action.payload
             }
         default:
             return state

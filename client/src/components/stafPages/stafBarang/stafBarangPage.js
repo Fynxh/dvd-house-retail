@@ -5,6 +5,8 @@ import PropTypes from "prop-types"
 import { Table, Card, CardBody, CardHeader } from "reactstrap";
 
 import AddBarangModal from "./addBarangModal"
+import DeleteBarangModal from "./deleteBarangModal";
+import UpdateBarangModal from "./updateBarangModal"
 
 class stafBarangPage extends Component {
 
@@ -41,9 +43,11 @@ class stafBarangPage extends Component {
                                     <tr key={id}>
                                         <td>{nama}</td>
                                         <td>{jumlah}</td>
-                                        <td className="d-flex justify-content-around">
-                                            <i className="icon-pencil"></i>
-                                            <i className="icon-trash"></i>
+                                        <td>
+                                            <div className="d-flex justify-content-around">
+                                                <UpdateBarangModal idBarang={id} nama={nama} jumlah={jumlah} />
+                                                <DeleteBarangModal idBarang={id} />
+                                            </div>
                                         </td>
                                     </tr>
                                 ))}

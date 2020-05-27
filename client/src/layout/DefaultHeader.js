@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem } from 'reactstrap';
+import PropTypes from "prop-types"
 
 import { AppSidebarToggler } from '@coreui/react';
-
-// const propTypes = {
-//   children: PropTypes.node,
-// };
 
 // const defaultProps = {};
 
 class DefaultHeader extends Component {
+
+  static propTypes = {
+    logout: PropTypes.func.isRequired
+  }
+
   render() {
 
     // eslint-disable-next-line
@@ -47,4 +49,4 @@ class DefaultHeader extends Component {
 // DefaultHeader.propTypes = propTypes;
 // DefaultHeader.defaultProps = defaultProps;
 
-export default DefaultHeader;
+export default DefaultHeader

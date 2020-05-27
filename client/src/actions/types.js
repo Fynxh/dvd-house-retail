@@ -8,6 +8,7 @@ export const GET_BARANG = 'GET_BARANG'
 export const ADD_BARANG = 'ADD_BARANG'
 export const DELETE_BARANG = 'DELETE_BARANG'
 export const UPDATE_BARANG = 'UPDATE_BARANG'
+export const GET_FAIL = 'GET_FAIL'
 
 // for keuangan
 export const KEUANGAN_LOADING = 'KEUANGAN_LOADING'

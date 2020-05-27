@@ -28,7 +28,30 @@ export const addBarang = barang => (dispatch, getState) => {
             payload: res.data
         })
     }).catch(err => {
-        dispatch(returnError(err.response.data, err.response.status))
+        dispatch(returnError(err.response.data, err.response.status, 'ADD_BARANG_FAIL'))
+    })
+}
+
+export const deleteBarang = id => (dispatch, getState) => {
+    axios.delete(`api/barang/${id}`, tokenConfig(getState)).then(res => {
+        dispatch({
+            type: DELETE_BARANG,
+            payload: id
+        })
+    }).catch(err => {
+        dispatch(returnError(err.response.data, err.response.status, 'DELETE_BARANG_FAIL'))
+    })
+}
+
+export const updateBarang = (id, barang) => (dispatch, getState) => {
+    axios.put(`api/barang/update/${id}`, barang, tokenConfig(getState)).then(res => {
+        dispatch(getBarang())
+        dispatch({
+            type: UPDATE_BARANG,
+            payload: res.data
+        })
+    }).catch(err => {
+        dispatch(returnError(err.response.data, err.response.status, 'UPDATE_BARANG_FAIL'))
     })
 }
 
