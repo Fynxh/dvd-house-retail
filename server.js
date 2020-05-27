@@ -24,6 +24,8 @@ const sequelizeConnect = new sequelize ('db_dvdhouseretail', 'root', '', {
 // routes
 app.use('/api/auth', require('./routes/api/auth'))
 app.use('/api/barang', require('./routes/api/barang'))
+app.use('/api/keuangan', require('./routes/api/keuangan'))
+app.use('/api/laporan', require('./routes/api/laporan'))
 
 // test connection
 sequelizeConnect.authenticate()
