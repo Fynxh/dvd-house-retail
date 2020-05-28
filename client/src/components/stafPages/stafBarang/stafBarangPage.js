@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { getBarang } from "../../../actions/barangAction";
 import PropTypes from "prop-types"
 import { Table, Card, CardBody, CardHeader } from "reactstrap";
+import ReactHTMLTableToExcel from 'react-html-table-to-excel'
+
 
 import AddBarangModal from "./addBarangModal"
 import DeleteBarangModal from "./deleteBarangModal";
@@ -28,9 +30,16 @@ class stafBarangPage extends Component {
                     <CardHeader className="d-flex justify-content-between">
                         <h4 className="d-inline">Stok Barang</h4>
                         <AddBarangModal />
+                        <ReactHTMLTableToExcel 
+                            className="btn btn-warning btn-pill"
+                            table="tblBarang"
+                            filename="Laporan DVD "
+                            sheet="Laporan DVD"
+                            buttonText="Export to XLS"
+                        />
                     </CardHeader>
                     <CardBody>
-                        <Table hover>
+                        <Table id="tblBarang" hover>
                             <thead>
                                 <tr>
                                     <th>Nama Barang</th>

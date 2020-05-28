@@ -85,7 +85,7 @@ router.put('/update/:id', auth, (req, res) => {
     }
 
     // update keuangan
-    User.update(
+    Keuangan.update(
         {
             tanggal: updateKeuangan.tanggal,
             pemasukan: updateKeuangan.pemasukan,
