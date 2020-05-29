@@ -17,7 +17,7 @@ export default function(state = initialState, action) {
         case KEUANGAN_LOADING:
             return{
                 ...state,
-                loading: false
+                loading: true
             }
         case GET_KEUANGAN:
             return {

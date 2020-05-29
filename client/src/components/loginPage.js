@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import PropTypes from "prop-types"
 import { login } from "../actions/authAction";
 import { clearError } from "../actions/errorAction";

@@ -47,9 +47,8 @@ class DefaultLayout extends Component {
   }
 
   render() {
-    const { isAuthenticated, user } = this.props.auth
+    const { isAuthenticated } = this.props.auth
     // const isAuthenticated = false
-    const level = user ? user.level : null
 
     const authRoutes = (
       <React.Fragment>

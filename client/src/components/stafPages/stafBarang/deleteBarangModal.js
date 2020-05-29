@@ -7,12 +7,7 @@ import {
     ModalBody, 
     ModalHeader,
     ModalFooter, 
-    Button,
-    Form,
-    Input,
-    InputGroup,
-    InputGroupAddon,
-    InputGroupText 
+    Button
 } from "reactstrap";
 
 class deleteBarangModal extends Component {
