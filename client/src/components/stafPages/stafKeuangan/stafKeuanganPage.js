@@ -8,6 +8,11 @@ import {
     CardBody,
     Table
 } from "reactstrap";
+import ReactHTMLTableToExcel from "react-html-table-to-excel"
+
+import AddKeuanganModal from "./addKeuanganModal"
+import DeleteKeuanganModal from "./deleteKeuanganModal"
+import UpdateKeuanganModal from "./updateKeuanganModal"
 
 class stafKeuanganPage extends Component {
     static propTypes = {
@@ -24,11 +29,19 @@ class stafKeuanganPage extends Component {
         return (
             <div>
                 <Card>
-                    <CardHeader>
+                    <CardHeader className="d-flex justify-content-between">
                         <h4>Data Keuangan</h4>
+                        <AddKeuanganModal />
+                        <ReactHTMLTableToExcel 
+                            className="btn btn-warning btn-pill"
+                            table="tblKeuangan"
+                            filename="Laporan Keuangan"
+                            sheet="Laporan Keuangan"
+                            buttonText="Export to XLS"
+                        />
                     </CardHeader>
                     <CardBody>
-                        <Table hover>
+                        <Table id="tblKeuangan" hover>
                             <thead>
                                 <tr>
                                     <th>Tanggal</th>
@@ -42,13 +55,13 @@ class stafKeuanganPage extends Component {
                                 {keuangan.map(({id, tanggal, pemasukan, pengeluaran, jumlah}) => (
                                     <tr key={id}>
                                         <td>{tanggal}</td>
-                                        <td>{pemasukan}</td>
-                                        <td>{pengeluaran}</td>
-                                        <td>{jumlah}</td>
+                                        <td>{pemasukan.toLocaleString()}</td>
+                                        <td>{pengeluaran.toLocaleString()}</td>
+                                        <td>{jumlah.toLocaleString()}</td>
                                         <td>
                                             <div className="d-flex justify-content-around">
-                                                <i className="icon-pencil"></i>
-                                                <i className="icon-trash"></i>
+                                                <UpdateKeuanganModal idKeuangan={id} tanggal={tanggal} pemasukan={pemasukan} pengeluaran={pengeluaran} />
+                                                <DeleteKeuanganModal idKeuangan={id} />
                                             </div>
                                         </td>
                                     </tr>
