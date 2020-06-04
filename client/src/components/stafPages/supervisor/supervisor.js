@@ -51,8 +51,10 @@ class supervisor extends Component {
                                         <td>{file}</td>
                                         <td>{tanggal}</td>
                                         <td>
-                                            <div className="d-flex justify-content-around">
-                                                
+                                            <div className="d-flex justify-content-center">
+                                                <a href={`../../tmp/file/${file}`} download>
+                                                    <i className="cil-cloud-download"></i>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>

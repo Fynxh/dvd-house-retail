@@ -18,9 +18,14 @@ import {
   AppSidebarNav2 as AppSidebarNav,
 } from '@coreui/react';
 // sidebar nav config
-import navigation from '../_nav';
+import SupervisorNavigation from '../navigations/_supervisorNav';
+import BarangNavigation from '../navigations/_barangNav'
+import KeuanganNavigation from '../navigations/_keuanganNav'
+
 // routes config
-import routes from '../routes';
+import SupervisorRoutes from '../routes/supervisorRoutes';
+import KeuanganRoutes from '../routes/keuanganRoutes'
+import BarangRoutes from '../routes/barangRoutes'
 
 const DefaultFooter = React.lazy(() => import('./DefaultFooter'));
 const DefaultHeader = React.lazy(() => import('./DefaultHeader'));
@@ -31,12 +36,24 @@ class DefaultLayout extends Component {
     super(props)
 
     this.state ={
-      navigation: null
+      navigation: null,
+      level: null
     }
   }
 
   static propTypes = {
     auth: PropTypes.object.isRequired
+  }
+
+  componentDidMount(){
+    const { user } = this.props.auth
+    if(user.level === 'STAF-BARANG'){
+      this.setState({ level: 'STAF-BARANG', navigation: 'STAF-BARANG' })
+    }else if(user.level === 'STAF-KEUANGAN'){
+      this.setState({ level: 'STAF-KEUANGAN', navigation: 'STAF-KEUANGAN' })
+    }else if(user.level === 'SUPERVISOR'){
+      this.setState({ level: 'SUPERVISOR', navigation: 'SUPERVISOR' })
+    }
   }
 
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
@@ -50,21 +67,82 @@ class DefaultLayout extends Component {
     const { isAuthenticated } = this.props.auth
     // const isAuthenticated = false
 
+    const barangRoutes = (
+      <React.Fragment>
+        {BarangRoutes.map((route, idx) => {
+            return route.component ? (
+              <Route
+                key={idx}
+                path={route.path}
+                exact={route.exact}
+                name={route.nama}
+                render={props => (
+                  <route.component {...props} />
+              )} />
+            ) : (null)
+          })}
+      </React.Fragment>
+    )
+
+    const keuanganRoutes = (
+      <React.Fragment>
+        {KeuanganRoutes.map((route, idx) => {
+            return route.component ? (
+              <Route
+                key={idx}
+                path={route.path}
+                exact={route.exact}
+                name={route.nama}
+                render={props => (
+                  <route.component {...props} />
+              )} />
+            ) : (null)
+          })}
+      </React.Fragment>
+    )
+
+    const supervisorRoutes = (
+      <React.Fragment>
+        {SupervisorRoutes.map((route, idx) => {
+            return route.component ? (
+              <Route
+                key={idx}
+                path={route.path}
+                exact={route.exact}
+                name={route.nama}
+                render={props => (
+                  <route.component {...props} />
+              )} />
+            ) : (null)
+          })}
+      </React.Fragment>
+    )
+
+    const barangNav = (
+      // <React.Fragment>
+        <AppSidebarNav navConfig={BarangNavigation} {...this.props} router={router}/>
+      // </React.Fragment>
+    )
+
+    const keuanganNav = (
+      // <React.Fragment>
+        <AppSidebarNav navConfig={KeuanganNavigation} {...this.props} router={router}/>
+      // </React.Fragment>
+    )
+
+    const supervisorNav = (
+      // <React.Fragment>
+        <AppSidebarNav navConfig={SupervisorNavigation} {...this.props} router={router}/>
+      // </React.Fragment>
+    )
+
     const authRoutes = (
       <React.Fragment>
-        {routes.map((route, idx) => {
-          return route.component ? (
-            <Route
-              key={idx}
-              path={route.path}
-              exact={route.exact}
-              name={route.nama}
-              render={props => (
-                <route.component {...props} />
-            )} />
-          ) : (null);
-        })}
-        <Redirect from="/" to="/dashboard" />
+        { 
+          this.state.level === 'STAF-BARANG' ? barangRoutes : 
+          this.state.level === 'STAF-KEUANGAN' ? keuanganRoutes :
+          this.state.level === 'SUPERVISOR' ? supervisorRoutes : null
+        }
       </React.Fragment>
     )
 
@@ -80,7 +158,11 @@ class DefaultLayout extends Component {
             <AppSidebarHeader />
             <AppSidebarForm />
             <Suspense>
-            <AppSidebarNav navConfig={navigation} {...this.props} router={router}/>
+            {
+              this.state.navigation === 'STAF-BARANG' ? barangNav : 
+              this.state.navigation === 'STAF-KEUANGAN' ? keuanganNav :
+              this.state.navigation === 'SUPERVISOR' ? supervisorNav : null
+            }
             </Suspense>
             <AppSidebarFooter />
             <AppSidebarMinimizer />

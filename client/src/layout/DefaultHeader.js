@@ -31,7 +31,7 @@ class DefaultHeader extends Component {
         <Nav className="ml-auto" navbar>
           <UncontrolledDropdown nav direction="down">
             <DropdownToggle nav>
-              <h4>Admin</h4>
+              <h5>Logout</h5>
               {/* <img src={'../../assets/img/avatars/6.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" /> */}
             </DropdownToggle>
             <DropdownMenu right>

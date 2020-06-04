@@ -11,13 +11,14 @@ const Laporan = require('../../models').laporan
 // @desc    Create laporan
 // @access  Private
 router.post('/', auth, (req, res) => {
+    const date = new Date()
 
     const storage = multer.diskStorage({
         destination: function(req, file, cb) {
             cb(null, 'tmp/file')
         },
         filename: function(req, file, cb) {
-            cb(null, file.originalname)
+            cb(null, '( '+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()+' )'+file.originalname )
         }
     })
     
@@ -34,9 +35,8 @@ router.post('/', auth, (req, res) => {
 
         // when everything OK
 
-        const file = req.file
-        const date = new Date()
-        const tanggal = date.getDate() +'-'+ date.getMonth() +'-'+ date.getFullYear()
+        const file = '( '+date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate()+' )'+req.file.originalname
+        const tanggal = req.body
 
         Laporan.create({
             id: uuid(),
